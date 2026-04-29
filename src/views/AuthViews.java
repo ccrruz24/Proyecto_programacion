@@ -114,6 +114,20 @@ public class AuthViews {
 	public AuthViews() {
 
 	}
+	
+	public void router(String target) {
+		
+		JFrame llamar = new JFrame();
+		llamar.getContentPane().removeAll();
+		
+		if (target.equals("inicioSesion")) this.inicioSesion();
+	    else if (target.equals("registro")) this.registro();
+		
+		llamar.revalidate();
+		llamar.repaint();
+
+
+	}
 
 	public void inicioSesion() {
 
@@ -276,9 +290,15 @@ public class AuthViews {
 		btnnoCuenta.setBorder(null);
 		btnnoCuenta.setFont(new Font("belanosima", Font.BOLD, 16));
 		panel.add(btnnoCuenta);
-
+		
+		inicio_contenedor.add(btnnoCuenta);
+		btnnoCuenta.addActionListener((e) -> {
+	         this.registro();
+	         ventana.dispose();
+	      });
+		panel.add(btnnoCuenta);
 		ventana.setVisible(true);
-		ventana.repaint();
+		
 
 	}
 	
@@ -437,10 +457,16 @@ public class AuthViews {
 		btnsiCuenta.setForeground(Color.decode("#981406"));
 		btnsiCuenta.setBorder(null);
 		btnsiCuenta.setFont(new Font("belanosima", Font.BOLD, 16));
+	
+		registro_contenedor.add(btnsiCuenta);
+		btnsiCuenta.addActionListener((e) -> {
+	         this.inicioSesion();
+	         ventana.dispose();
+	      });
 		panel.add(btnsiCuenta);
 		
 		ventana.setVisible(true);
-		ventana.repaint();
+		
 
 	}
 

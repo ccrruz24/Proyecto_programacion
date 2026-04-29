@@ -21,5 +21,9 @@ public class AuthController {
 		
 	}
 	
+	public void router() {
+		vista.router(null);
+	}
+	
 	
 }
