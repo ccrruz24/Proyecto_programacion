@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		AuthController ac = new AuthController();
-		//ac.login();
+		ac.login();
 		ac.registro();
 
 	}

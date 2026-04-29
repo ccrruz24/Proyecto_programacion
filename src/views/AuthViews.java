@@ -281,7 +281,7 @@ public class AuthViews {
 		ventana.repaint();
 
 	}
-
+	
 	public void registro() {
 
 		JFrame ventana = new JFrame();
@@ -443,5 +443,7 @@ public class AuthViews {
 		ventana.repaint();
 
 	}
+
+	
 
 }
