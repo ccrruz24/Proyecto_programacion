@@ -1,8 +1,11 @@
 package application;
 
 import controllers.AuthController;
+import controllers.ClientController;
 import controllers.DishesController;
 import controllers.HomeController;
+import controllers.InventoryController;
+import controllers.OrdersController;
 import views.HomeViews;
 
 public class Main {
@@ -17,7 +20,16 @@ public class Main {
 		//hc.panelControl();
 		
 		DishesController vp = new DishesController();
-		vp.platillos();
+		//vp.platillos();
+		
+		OrdersController ov = new OrdersController();
+		//ov.ordenes();
+		
+		ClientController cv = new ClientController();
+		//cv.clientes();
+		
+		InventoryController iv = new InventoryController();
+		iv.inventario();
 
 	}
 

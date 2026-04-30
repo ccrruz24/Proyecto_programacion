@@ -213,6 +213,13 @@ public class HomeViews {
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
+		
+		btnControl.addActionListener(e -> {
+		    HomeViews dashboard = new HomeViews();
+		    dashboard.panelControl();
+		    ventana.dispose(); 
+		});
+		
 		opciones.add(btnControl);
 
 		// Boton de platillos
@@ -233,6 +240,13 @@ public class HomeViews {
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
+		
+		btnPlatillos.addActionListener(e -> {
+		    DishesView dish = new DishesView();
+		    dish.platillos();
+		    ventana.dispose(); 
+		});
+		
 		opciones.add(btnPlatillos);
 
 		// Boton de ordenes
@@ -253,6 +267,13 @@ public class HomeViews {
 		btnOrdenes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
+		
+		btnOrdenes.addActionListener(e -> {
+		    OrdersView orders = new OrdersView();
+		    orders.ordenes();
+		    ventana.dispose(); 
+		});
+		
 		opciones.add(btnOrdenes);
 
 		// Boton de clientes
@@ -273,6 +294,13 @@ public class HomeViews {
 		btnClientes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
+		
+		btnClientes.addActionListener(e -> {
+		    ClientsViews clients = new ClientsViews();
+		    clients.clientes();
+		    ventana.dispose(); 
+		});
+		
 		opciones.add(btnClientes);
 
 		// Boton de clientes
@@ -293,6 +321,13 @@ public class HomeViews {
 		btnInventario.setVerticalTextPosition(SwingConstants.CENTER);
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
+		
+		btnInventario.addActionListener(e -> {
+		    InventoryView inventory = new InventoryView();
+		    inventory.inventario();
+		    ventana.dispose(); 
+		});
+		
 		opciones.add(btnInventario);
 
 		// Boton de correo electronico
@@ -329,6 +364,13 @@ public class HomeViews {
 		btnCerrar.setBackground(Color.decode("#ad3813"));
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
+		
+		btnCerrar.addActionListener(e -> {
+		    AuthViews close = new AuthViews();
+		    close.inicioSesion();
+		    ventana.dispose(); 
+		});
+		
 		opciones.add(btnCerrar);
 
 		// PANEL PRINCIPAL
