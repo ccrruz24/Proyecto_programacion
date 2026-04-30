@@ -24,6 +24,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import models.AuthModel;
+
 public class AuthViews {
 
 	private Font belanosima;
@@ -284,53 +286,47 @@ public class AuthViews {
 			ventana.dispose();
 		});
 
-		// Acción del botón de iniciar sesión
+		// Boton de inicio de secion
 		btnInicio.addActionListener(e -> {
-			String correoStr = textCorreo.getText().trim();
-			String contraStr = new String(textContra.getPassword()).trim();
+		    String correoStr = textCorreo.getText().trim();
+		    String contraStr = new String(textContra.getPassword()).trim();
 
-			// Validar correo
-			boolean correoOk = false;
-			if (correoStr.equals("")) {
-				textCorreo.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-			} else {
-				textCorreo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-				correoOk = true;
-			}
+		    // Validacion de correo
+		    boolean correoOk = !correoStr.isEmpty();
+		    textCorreo.setBorder(BorderFactory.createLineBorder(correoOk ? Color.GREEN : Color.RED, 3));
 
-			// Validar contraseña
-			boolean contraOk = false;
-			if (contraStr.equals("")) {
-				textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-			} else if (contraStr.length() < 8) {
-				textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-			} else {
-				textContra.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-				contraOk = true;
-			}
+		    // Validacion de contraseña
+		    boolean contraOk = !contraStr.isEmpty() && contraStr.length() >= 8;
+		    textContra.setBorder(BorderFactory.createLineBorder(contraOk ? Color.GREEN : Color.RED, 3));
 
-			// Validacion final
-			if (correoOk && contraOk) {
-				if (correoStr.equals("admin@maiz.com") && contraStr.equals("12345678")) {
-					
-					JOptionPane.showMessageDialog(
-				            inicio_contenedor, 
-				            "¡Bienvenido a La Casa del Maíz!", 
-				            "Acceso Concedido", 
-				            JOptionPane.INFORMATION_MESSAGE
-				        );
-					
-					HomeViews home = new HomeViews();
-					home.panelControl();
-					ventana.dispose();
-				} else {
-					JOptionPane.showMessageDialog(inicio_contenedor, "Credenciales incorrectas", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			} else {
-				JOptionPane.showMessageDialog(inicio_contenedor, "Revisa bien los campos", "Datos incompletos",
-						JOptionPane.WARNING_MESSAGE);
-			}
+		    // Validacion en DB
+		    if (correoOk && contraOk) {
+		        
+		        AuthModel auth = new AuthModel(); 
+		        
+		        if (auth.access(correoStr, contraStr)) {
+		            
+		            JOptionPane.showMessageDialog(
+		                    inicio_contenedor, 
+		                    "¡Bienvenido a La Casa del Maíz!", 
+		                    "Acceso Concedido", 
+		                    JOptionPane.INFORMATION_MESSAGE
+		                );
+		            
+		            HomeViews home = new HomeViews();
+		            home.panelControl();
+		            ventana.dispose();
+		        } else {
+		            JOptionPane.showMessageDialog(inicio_contenedor, "El correo o la contraseña no coinciden", "Error de acceso",
+		                    JOptionPane.ERROR_MESSAGE);
+		            
+		            textContra.setText("");
+		            textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		        }
+		    } else {
+		        JOptionPane.showMessageDialog(inicio_contenedor, "Por favor, completa los campos correctamente (Contraseña: min. 8 caracteres)", "Datos incompletos",
+		                JOptionPane.WARNING_MESSAGE);
+		    }
 		});
 		panel.add(btnnoCuenta);
 		ventana.setVisible(true);
