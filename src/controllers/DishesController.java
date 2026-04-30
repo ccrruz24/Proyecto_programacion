@@ -14,4 +14,26 @@ public class DishesController {
 	public void platillos() {
 		vp.platillos();
 	}
+	
+	public void agregarPlatillo() {
+		vp.agregarPlatillo();
+	}
+	
+	public void verPlatilloTacosalpastor() {
+		vp.verPlatilloTacos();
+	}
+	
+	public void editarPlatilloTacosalpastor() {
+		vp.editarPlatilloTacos();
+	}
+	
+	public void verPlatilloEnchilada() {
+		vp.verPlatilloEnchilada();
+	}
+	
+	public void editarPlatilloEnchilada() {
+		vp.editarPlatilloEnchilada();
+	}
+	
+	
 }

@@ -14,5 +14,33 @@ public class ClientController {
 	public void clientes() {
 		cv.clientes();
 	}
+	
+	public void verClienteGrady() {
+		cv.verClienteGrady();
+	}
+
+	public void editarClienteGrady() {
+		cv.editarClienteGrady();
+	}
+
+	public void verClienteMarta() {
+		cv.verClienteMarta();
+	}
+
+	public void editarClienteMarta() {
+		cv.editarClienteMarta();
+	}
+
+	public void verClienteSalma() {
+		cv.verClienteSalma();
+	}
+
+	public void editarClienteSalma() {
+		cv.editarClienteSalma();
+	}	
+	
+	public void agregarCliente() {
+		cv.agregarCliente();
+	}
 
 }

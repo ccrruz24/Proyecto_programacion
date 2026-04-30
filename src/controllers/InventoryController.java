@@ -13,4 +13,24 @@ public InventoryController() {
 	public void inventario() {
 		iv.inventario();
 	}
+	
+	public void verInventarioTortilla() {
+		iv.verInventarioTortilla();
+	}
+	
+	public void editarInventarioTortilla() {
+		iv.editarInventarioTortilla();
+	}
+	
+	public void verInventarioLimon() {
+		iv.verInventarioLimon();
+	}
+	
+	public void editarInventarioLimon() {
+		iv.editarInventarioLimon();
+	}
+	
+	public void agregarIngrediente() {
+		iv.agregarIngrediente();
+	}
 }
