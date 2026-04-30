@@ -8,5 +8,12 @@ public class HomeController {
 	public HomeController() {
 		
 		hv = new HomeViews();
+	
 	}
+	
+	public void panelControl() {
+		hv.panelControl();
+	}
+	
+	
 }

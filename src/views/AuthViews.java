@@ -8,14 +8,17 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -114,20 +117,6 @@ public class AuthViews {
 	public AuthViews() {
 
 	}
-	
-	public void router(String target) {
-		
-		JFrame llamar = new JFrame();
-		llamar.getContentPane().removeAll();
-		
-		if (target.equals("inicioSesion")) this.inicioSesion();
-	    else if (target.equals("registro")) this.registro();
-		
-		llamar.revalidate();
-		llamar.repaint();
-
-
-	}
 
 	public void inicioSesion() {
 
@@ -159,7 +148,6 @@ public class AuthViews {
 			e.printStackTrace();
 		}
 
-		// Panel principal con imagen de fondo
 		JPanel inicio_contenedor = new JPanel() {
 			private Image fondo = new ImageIcon(getClass().getResource("/images/fondo login.png")).getImage();
 
@@ -277,7 +265,6 @@ public class AuthViews {
 		btnInicio.setBackground(Color.decode("#B6200D"));
 		btnInicio.setFont(new Font("belanosima", Font.BOLD, 20));
 		btnInicio.setForeground(Color.white);
-
 		panel.add(btnInicio);
 
 		// Boton de no tienes cuenta
@@ -290,18 +277,66 @@ public class AuthViews {
 		btnnoCuenta.setBorder(null);
 		btnnoCuenta.setFont(new Font("belanosima", Font.BOLD, 16));
 		panel.add(btnnoCuenta);
-		
+
 		inicio_contenedor.add(btnnoCuenta);
 		btnnoCuenta.addActionListener((e) -> {
-	         this.registro();
-	         ventana.dispose();
-	      });
+			this.registro();
+			ventana.dispose();
+		});
+
+		// Acción del botón de iniciar sesión
+		btnInicio.addActionListener(e -> {
+			String correoStr = textCorreo.getText().trim();
+			String contraStr = new String(textContra.getPassword()).trim();
+
+			// Validar correo
+			boolean correoOk = false;
+			if (correoStr.equals("")) {
+				textCorreo.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+			} else {
+				textCorreo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+				correoOk = true;
+			}
+
+			// Validar contraseña
+			boolean contraOk = false;
+			if (contraStr.equals("")) {
+				textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+			} else if (contraStr.length() < 8) {
+				textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+			} else {
+				textContra.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+				contraOk = true;
+			}
+
+			// Validacion final
+			if (correoOk && contraOk) {
+				if (correoStr.equals("admin@maiz.com") && contraStr.equals("12345678")) {
+					
+					JOptionPane.showMessageDialog(
+				            inicio_contenedor, 
+				            "¡Bienvenido a La Casa del Maíz!", 
+				            "Acceso Concedido", 
+				            JOptionPane.INFORMATION_MESSAGE
+				        );
+					
+					HomeViews home = new HomeViews();
+					home.panelControl();
+					ventana.dispose();
+				} else {
+					JOptionPane.showMessageDialog(inicio_contenedor, "Credenciales incorrectas", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(inicio_contenedor, "Revisa bien los campos", "Datos incompletos",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		});
 		panel.add(btnnoCuenta);
 		ventana.setVisible(true);
-		
 
 	}
-	
+
 	public void registro() {
 
 		JFrame ventana = new JFrame();
@@ -355,8 +390,8 @@ public class AuthViews {
 		Image img = icon.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 		ImageIcon scaledIcon = new ImageIcon(img);
 		JLabel iconLabel = new JLabel(scaledIcon);
-		iconLabel.setSize(140, 100);
-		iconLabel.setLocation(250, 10);
+		iconLabel.setSize(150, 100);
+		iconLabel.setLocation(245, 10);
 		panel.add(iconLabel);
 
 		// Etiqueta de nombre
@@ -457,19 +492,73 @@ public class AuthViews {
 		btnsiCuenta.setForeground(Color.decode("#981406"));
 		btnsiCuenta.setBorder(null);
 		btnsiCuenta.setFont(new Font("belanosima", Font.BOLD, 16));
-	
+
 		registro_contenedor.add(btnsiCuenta);
 		btnsiCuenta.addActionListener((e) -> {
-	         this.inicioSesion();
-	         ventana.dispose();
-	      });
+			this.inicioSesion();
+			ventana.dispose();
+		});
+
+		btnRegistro.addActionListener(e -> {
+			// Obtener los valores de todos los campos
+			String nom = textNombre.getText().trim();
+			String ape = textApellido.getText().trim();
+			String mail = textCorreo.getText().trim();
+			String pass = textContra.getText().trim();
+			String passConfirm = textContra1.getText().trim();
+
+			// Validar nombre y apellido
+			if (nom.isEmpty()) {
+				textNombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			} else {
+				textNombre.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+			}
+
+			if (ape.isEmpty()) {
+				textApellido.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			} else {
+				textApellido.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+			}
+
+			// Validar correo
+			if (mail.isEmpty()) {
+				textCorreo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			} else {
+				textCorreo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+			}
+
+			// Validar primera contraseña
+			if (pass.isEmpty() || pass.length() < 8) {
+				textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			} else {
+				textContra.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+			}
+
+			// Validadion de contraseña
+			if (passConfirm.isEmpty() || !passConfirm.equals(pass)) {
+				textContra1.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			} else {
+				textContra1.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+			}
+
+			// Verificación final
+			if (!nom.isEmpty() && !ape.isEmpty() && !mail.isEmpty() && pass.length() >= 8 && pass.equals(passConfirm)) {
+
+				JOptionPane.showMessageDialog(panel, "Registro exitoso", "La Casa del Maíz",
+						JOptionPane.INFORMATION_MESSAGE);
+
+				ventana.dispose();
+			} else {
+				// Alerta si las contraseñas no coinciden
+				if (!pass.equals(passConfirm) && !passConfirm.isEmpty()) {
+					JOptionPane.showMessageDialog(panel, "Las contraseñas no coinciden", "Error de Validación",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
 		panel.add(btnsiCuenta);
-		
 		ventana.setVisible(true);
-		
-
 	}
-
-	
 
 }

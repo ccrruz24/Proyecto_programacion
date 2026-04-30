@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -14,6 +13,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,7 +30,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class HomeViews {
+public class DishesView {
+	
 	private Font belanosima;
 
 	public static class RoundedTextField extends JTextField {
@@ -119,12 +120,12 @@ public class HomeViews {
 		}
 	}
 
-	public HomeViews() {
+	public DishesView() {
 
 	}
 
-	public void panelControl() {
-
+	public void platillos() {
+		
 		JFrame ventana = new JFrame();
 
 		ventana.setSize(1200, 839);
@@ -213,6 +214,9 @@ public class HomeViews {
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
+		
+	
+		
 		opciones.add(btnControl);
 
 		// Boton de platillos
@@ -232,7 +236,7 @@ public class HomeViews {
 		btnPlatillos.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
-		btnPlatillos.setFocusPainted(false);
+		btnPlatillos.setFocusPainted(false);		
 		opciones.add(btnPlatillos);
 
 		// Boton de ordenes
@@ -252,7 +256,7 @@ public class HomeViews {
 		btnOrdenes.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnOrdenes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnOrdenes.setIconTextGap(10);
-		btnOrdenes.setFocusPainted(false);
+		btnOrdenes.setFocusPainted(false);	
 		opciones.add(btnOrdenes);
 
 		// Boton de clientes
@@ -272,7 +276,7 @@ public class HomeViews {
 		btnClientes.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnClientes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnClientes.setIconTextGap(10);
-		btnClientes.setFocusPainted(false);
+		btnClientes.setFocusPainted(false);		
 		opciones.add(btnClientes);
 
 		// Boton de clientes
@@ -328,105 +332,192 @@ public class HomeViews {
 		btnCerrar.setBorder(null);
 		btnCerrar.setBackground(Color.decode("#ad3813"));
 		btnCerrar.setForeground(Color.white);
-		btnCerrar.setFocusPainted(false);
+		btnCerrar.setFocusPainted(false);		
 		opciones.add(btnCerrar);
 
 		// PANEL PRINCIPAL
 
 		// Etiqueta de titulo
-		JLabel Titulo = new JLabel("Panel de control");
-		Titulo.setBounds(350, -10, 350, 100);
+		JLabel Titulo = new JLabel("Platillos");
+		Titulo.setBounds(350, -10, 250, 100);
 		Titulo.setFont(new Font("belanosima", Font.BOLD, 38));
 		contenido.add(Titulo);
 
-		// Boton de pendiente
-		RoundedButton btnPendiente = new RoundedButton("Pendiente", 20);
-		btnPendiente.setSize(250, 200);
-		btnPendiente.setLocation(340, 160);
-		btnPendiente.setBackground(Color.decode("#DC542B"));
-		btnPendiente.setFont(new Font("belanosima", Font.BOLD, 20));
-		btnPendiente.setForeground(Color.white);
-		contenido.add(btnPendiente);
+		// Boton de agregar platillos
+		RoundedButton btnAgregar = new RoundedButton("+ Agregar platillo", 40);
+		btnAgregar.setSize(250, 50);
+		btnAgregar.setLocation(900, 70);
+		btnAgregar.setBackground(Color.decode("#DC542B"));
+		btnAgregar.setFont(new Font("belanosima", Font.BOLD, 26));
+		btnAgregar.setForeground(Color.white);		
+		contenido.add(btnAgregar);
 
-		// Boton de preparandd
-		RoundedButton btnPreparado = new RoundedButton("Preparando", 20) {
+		// Datos
+		String[] columnas = { "Foto", "Nombre", "Categoría", "Precio", "Estado", "Acciones" };
+		Object[][] datos = { { "/images/pozole.jpg", "Pozole verde", "Pozoles", "$125", "Disponible", "" },
+				{ "/images/tacos pastor.jpg", "Tacos al pastor", "Tacos", "$85", "Disponible", "" },
+				{ "/images/enchiladas.jpg", "Enchiladas rojas", "Enchiladas", "$105", "No disponible", "" },
+				{ "/images/sopes.jpg", "Sopes", "Sopes", "$115", "Disponible", "" } };
+
+		// Modelo de tabla
+		DefaultTableModel modeloPlatillos = new DefaultTableModel(datos, columnas) {
 			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g.create();
-				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-				g2.setColor(Color.decode("#DC542B"));
-				g2.setStroke(new BasicStroke(2));
-				g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
-
-				g2.dispose();
+			public boolean isCellEditable(int r, int c) {
+				return c == 5;
 			}
 		};
-		btnPreparado.setSize(250, 200);
-		btnPreparado.setLocation(620, 160);
-		btnPreparado.setFont(new Font("belanosima", Font.BOLD, 20));
-		btnPreparado.setForeground(Color.decode("#DC542B"));
-		btnPreparado.setBackground(Color.WHITE);
-		contenido.add(btnPreparado);
 
-		// Boton de entregados
-		RoundedButton btnEntregado = new RoundedButton("Entregado", 20);
-		btnEntregado.setSize(250, 200);
-		btnEntregado.setLocation(900, 160);
-		btnEntregado.setBackground(Color.decode("#DC542B"));
-		btnEntregado.setFont(new Font("belanosima", Font.BOLD, 20));
-		btnEntregado.setForeground(Color.white);
-		contenido.add(btnEntregado);
+		JTable tabla = new JTable(modeloPlatillos);
 
-		// Panel que dibuja la gráfica de pastel
-		JPanel grafica = new JPanel() {
+		// Estetica
+		tabla.setRowHeight(110);
+		tabla.setShowGrid(false);
+		tabla.setBackground(Color.WHITE);
+		tabla.setIntercellSpacing(new Dimension(0, 0));
+		tabla.setSelectionBackground(new Color(250, 248, 245));
+
+		// Encabezado
+		JTableHeader header = tabla.getTableHeader();
+		header.setPreferredSize(new Dimension(0, 50));
+		header.setBackground(new Color(245, 240, 230));
+		header.setForeground(new Color(100, 100, 100));
+		header.setFont(new Font("belanosima", Font.BOLD, 14));
+		header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
+
+		// Renderer
+		tabla.getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
 			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g;
-
-				// Datos de los platillos
-				int[] valores = { 40, 25, 15, 10, 10 };
-				Color[] colores = { Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE, Color.ORANGE };
-				String[] nombres = { "Tacos", "Sopes", "Pozole rojo", "Enchiladas", "Pozole verde" };
-
-				// Calcular total
-				int total = 0;
-				for (int v : valores)
-					total += v;
-
-				// Dibujar pastel
-				int startAngle = 0;
-				for (int i = 0; i < valores.length; i++) {
-					int arcAngle = (int) Math.round(360.0 * valores[i] / total);
-					g2.setColor(colores[i]);
-					g2.fillArc(50, 50, 200, 200, startAngle, arcAngle);
-					startAngle += arcAngle;
+			public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
+				try {
+					java.net.URL imgURL = getClass().getResource(v.toString());
+					if (imgURL != null) {
+						ImageIcon icon = new ImageIcon(imgURL);
+						Image img = icon.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+						return new JLabel(new ImageIcon(img), JLabel.CENTER);
+					}
+				} catch (Exception e) {
 				}
-
-				// leyenda a la derecha
-				int y = 80;
-				int x = 280;
-				for (int i = 0; i < nombres.length; i++) {
-					g2.setColor(colores[i]);
-					g2.fillRect(x, y, 20, 20);
-					g2.setColor(Color.BLACK);
-					g2.drawString(nombres[i], x + 30, y + 15);
-					y += 30;
-				}
-
-				// Título
-				g2.setFont(new Font("belanosima", Font.BOLD, 18));
-				g2.drawString("Platillos más vendidos", 50, 30);
+				return new JLabel("No image", JLabel.CENTER);
 			}
-		};
-		grafica.setBounds(530, 400, 400, 300);
-		contenido.add(grafica);
+		});
 
+		// Renderer
+		tabla.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
+				JLabel lbl = new JLabel(v.toString(), SwingConstants.CENTER);
+				lbl.setOpaque(true);
+				lbl.setFont(new Font("belanosima", Font.BOLD, 12));
+				lbl.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+
+				if ("Disponible".equals(v)) {
+					lbl.setBackground(Color.decode("#EAEFE4"));
+					lbl.setForeground(Color.decode("#558B2F"));
+				} else if ("No disponible".equals(v)) {
+					lbl.setBackground(Color.decode("#FAEAEA"));
+					lbl.setForeground(Color.decode("#C62828"));
+				}
+
+				JPanel p = new JPanel(new GridBagLayout());
+				p.setBackground(Color.WHITE);
+				p.add(lbl);
+				return p;
+			}
+		});
+
+		class PanelBotones extends JPanel {
+			JButton btnVer, btnEdit, btnDel;
+
+			public PanelBotones(int fila, JTable tabla) {
+				setLayout(new FlowLayout(FlowLayout.CENTER, 10, 40));
+				setBackground(Color.WHITE);
+
+				btnVer = crearBoton("/images/detalles.png");
+				btnEdit = crearBoton("/images/editar.png");
+				btnDel = crearBoton("/images/borrar.png");
+
+				btnVer.addActionListener(e -> {
+					if (tabla.isEditing())
+						tabla.getCellEditor().stopCellEditing();
+
+					String nombreRaw = tabla.getValueAt(fila, 1).toString();
+					String nombreLimpio = nombreRaw.replace(" ", "");
+
+					
+				});
+
+				btnEdit.addActionListener(e -> {
+					if (tabla.isEditing())
+						tabla.getCellEditor().stopCellEditing();
+
+					String nombreRaw = tabla.getValueAt(fila, 1).toString();
+					String nombreLimpio = nombreRaw.replace(" ", "");
+
+				
+				});
+
+				btnDel.addActionListener(e -> {
+					if (tabla.isEditing())
+						tabla.getCellEditor().stopCellEditing();
+					((DefaultTableModel) tabla.getModel()).removeRow(fila);
+				});
+
+				add(btnVer);
+				add(btnEdit);
+				add(btnDel);
+
+			}
+
+			private JButton crearBoton(String ruta) {
+				JButton btn;
+				try {
+					ImageIcon icon = new ImageIcon(getClass().getResource(ruta));
+					Image img = icon.getImage().getScaledInstance(22, 22, Image.SCALE_SMOOTH);
+					btn = new JButton(new ImageIcon(img));
+				} catch (Exception e) {
+					btn = new JButton("?");
+				}
+				btn.setPreferredSize(new Dimension(30, 30));
+				btn.setContentAreaFilled(false);
+				btn.setBorderPainted(false);
+				btn.setFocusPainted(false);
+				btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				return btn;
+			}
+		}
+
+		tabla.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
+				return new PanelBotones(r, t);
+			}
+		});
+
+		tabla.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(new JCheckBox()) {
+			@Override
+			public Component getTableCellEditorComponent(JTable t, Object v, boolean s, int r, int c) {
+				return new PanelBotones(r, t);
+			}
+		});
+
+		// Alineacion final
+		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
+		centro.setHorizontalAlignment(JLabel.CENTER);
+		for (int i = 1; i < 4; i++)
+			tabla.getColumnModel().getColumn(i).setCellRenderer(centro);
+
+		// Integracion panel
+		JScrollPane scrollPlatillos = new JScrollPane(tabla);
+		scrollPlatillos.setBounds(350, 150, 800, 550);
+		scrollPlatillos.setBorder(BorderFactory.createLineBorder(new Color(230, 230, 230)));
+		scrollPlatillos.getViewport().setBackground(Color.WHITE);
+
+		contenido.add(scrollPlatillos);
 		ventana.setVisible(true);
 	}
-
 	
+	public void verPlatilloTacos() {
+		
+	}
 
 }
