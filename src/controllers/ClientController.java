@@ -67,4 +67,28 @@ public class ClientController {
 		cv.agregarCliente();
 	}
 
+	public void editarClienteGrady() {
+		cv.editarClienteGrady();
+	}
+
+	public void verClienteMarta() {
+		cv.verClienteMarta();
+	}
+
+	public void editarClienteMarta() {
+		cv.editarClienteMarta();
+	}
+
+	public void verClienteSalma() {
+		cv.verClienteSalma();
+	}
+
+	public void editarClienteSalma() {
+		cv.editarClienteSalma();
+	}	
+	
+	public void agregarCliente() {
+		cv.agregarCliente();
+	}
+
 }

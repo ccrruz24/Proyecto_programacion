@@ -33,5 +33,4 @@ public InventoryController() {
 	public void agregarIngrediente() {
 		iv.agregarIngrediente();
 	}
-
 }
