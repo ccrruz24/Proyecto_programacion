@@ -14,4 +14,33 @@ public class OrdersController {
 	public void ordenes() {
 		ov.ordenes();
 	}
+	
+	public void verOrdenesGrady() {
+		ov.verOrdenesGrady();
+	}
+
+	public void editarOrdenesGrady() {
+		ov.editarOrdenesGrady();
+	}
+	
+	public void verOrdenesMarta() {
+		ov.verOrdenesMarta();
+	}
+
+	public void editarOrdenesMarta() {
+		ov.editarOrdenesMarta();
+	}
+	
+	public void verOrdenesSalma() {
+		ov.verOrdenesSalma();
+	}
+
+	public void editarOrdenesSalma() {
+		ov.editarOrdenesSalma();
+	}
+	
+	public void nuevaOrden() {
+		ov.nuevaOrden();
+	}
+
 }
