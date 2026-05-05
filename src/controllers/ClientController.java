@@ -42,5 +42,4 @@ public class ClientController {
 	public void agregarCliente() {
 		cv.agregarCliente();
 	}
-
 }
