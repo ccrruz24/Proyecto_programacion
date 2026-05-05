@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -500,14 +501,33 @@ public class DishesView {
 			@Override
 			public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
 				try {
-					java.net.URL imgURL = getClass().getResource(v.toString());
-					if (imgURL != null) {
-						ImageIcon icon = new ImageIcon(imgURL);
-						Image img = icon.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-						return new JLabel(new ImageIcon(img), JLabel.CENTER);
-					}
-				} catch (Exception e) {
-				}
+		            java.net.URL imgURL = getClass().getResource(v.toString());
+		            if (imgURL != null) {
+		                // Definir el tamaño 
+		                int ancho = 80; 
+		                int alto = 80;
+		                int redondeo = 15; 
+
+		                ImageIcon icon = new ImageIcon(imgURL);
+		                Image img = icon.getImage();
+		                
+		                // Crear una imagen con bordes redondeados
+		                BufferedImage roundedImg = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_ARGB);
+		                Graphics2D g2 = roundedImg.createGraphics();
+		                
+		                // Suavizado de bordes
+		                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		                
+		                // Crear el recorte
+		                g2.setClip(new RoundRectangle2D.Float(0, 0, ancho, alto, redondeo, redondeo));
+		                g2.drawImage(img, 0, 0, ancho, alto, null);
+		                g2.dispose();
+		                
+		                return new JLabel(new ImageIcon(roundedImg), JLabel.CENTER);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
 				return new JLabel("No image", JLabel.CENTER);
 			}
 		});
@@ -544,10 +564,10 @@ public class DishesView {
 		        setBackground(Color.WHITE);
 
 		        btnVer = crearBoton("/images/detalles.png");
-		        btnEdit = crearBoton("/images/editar.png");
+		        btnEdit = crearBoton("/images/edit.png");
 		        btnDel = crearBoton("/images/borrar.png");
 
-		        // Acción VER Manual
+		        // Acción ver
 		        btnVer.addActionListener(e -> {
 		            if (tabla.isEditing()) tabla.getCellEditor().stopCellEditing();
 		            		          
@@ -565,7 +585,7 @@ public class DishesView {
 		            }
 		        });
 
-		        // ACCIÓN EDITAR: Llamada manual
+		        // Accion llmar
 		        btnEdit.addActionListener(e -> {
 		            if (tabla.isEditing()) tabla.getCellEditor().stopCellEditing();
 		            
@@ -604,7 +624,7 @@ public class DishesView {
 		        } catch (Exception e) {
 		            btn = new JButton("?");
 		        }
-		        btn.setPreferredSize(new Dimension(30, 30));
+		        btn.setPreferredSize(new Dimension(25, 25));
 		        btn.setContentAreaFilled(false);
 		        btn.setBorderPainted(false);
 		        btn.setFocusPainted(false);
@@ -1452,17 +1472,19 @@ public class DishesView {
 		panel.add(tituloDescripcion1);
 
 		ImageIcon icon10 = new ImageIcon(getClass().getResource("/images/editar.png"));
-		Image img10 = icon10.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		Image img10 = icon10.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon scaledIcon10 = new ImageIcon(img10);
 
 		RoundedButton btnEditar = new RoundedButton("Editar", 20, scaledIcon10);
-		btnEditar.setSize(170, 50);
-		btnEditar.setLocation(380, 420);
+		btnEditar.setSize(130, 50);
+		btnEditar.setLocation(440, 420);
 		btnEditar.setBackground(Color.decode("#DC542B"));
 		btnEditar.setFont(new Font("belanosima", Font.BOLD, 22));
 		btnEditar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnEditar.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnEditar.setVerticalTextPosition(SwingConstants.CENTER);
+		btnEditar.setIconTextGap(10);
+		btnEditar.setMargin(new java.awt.Insets(0, 10, 0, 0));
 		btnEditar.setForeground(Color.white);
 
 		btnEditar.addActionListener(e -> {
@@ -1474,17 +1496,19 @@ public class DishesView {
 		panel.add(btnEditar);
 
 		ImageIcon icon11 = new ImageIcon(getClass().getResource("/images/download.png"));
-		Image img11 = icon11.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		Image img11 = icon11.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon scaledIcon11 = new ImageIcon(img11);
 
 		RoundedButton btnDescargar = new RoundedButton("Descargar PDF", 20, scaledIcon11);
-		btnDescargar.setSize(250, 50);
-		btnDescargar.setLocation(570, 420);
+		btnDescargar.setSize(220, 50);
+		btnDescargar.setLocation(600, 420);
 		btnDescargar.setBackground(Color.decode("#DC542B"));
 		btnDescargar.setFont(new Font("belanosima", Font.BOLD, 22));
 		btnDescargar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnDescargar.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnDescargar.setVerticalTextPosition(SwingConstants.CENTER);
+		btnDescargar.setIconTextGap(10);
+		btnDescargar.setMargin(new java.awt.Insets(0, 10, 0, 0));
 		btnDescargar.setForeground(Color.white);
 		panel.add(btnDescargar);
 
@@ -2578,17 +2602,19 @@ public class DishesView {
 		panel.add(tituloDescripcion1);
 
 		ImageIcon icon10 = new ImageIcon(getClass().getResource("/images/editar.png"));
-		Image img10 = icon10.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		Image img10 = icon10.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon scaledIcon10 = new ImageIcon(img10);
 
 		RoundedButton btnEditar = new RoundedButton("Editar", 20, scaledIcon10);
-		btnEditar.setSize(170, 50);
-		btnEditar.setLocation(380, 420);
+		btnEditar.setSize(130, 50);
+		btnEditar.setLocation(440, 420);
 		btnEditar.setBackground(Color.decode("#DC542B"));
 		btnEditar.setFont(new Font("belanosima", Font.BOLD, 22));
 		btnEditar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnEditar.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnEditar.setVerticalTextPosition(SwingConstants.CENTER);
+		btnEditar.setIconTextGap(10);
+		btnEditar.setMargin(new java.awt.Insets(0, 10, 0, 0));
 		btnEditar.setForeground(Color.white);
 		
 		btnEditar.addActionListener(e -> {
@@ -2601,17 +2627,19 @@ public class DishesView {
 		panel.add(btnEditar);
 
 		ImageIcon icon11 = new ImageIcon(getClass().getResource("/images/download.png"));
-		Image img11 = icon11.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		Image img11 = icon11.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon scaledIcon11 = new ImageIcon(img11);
 
 		RoundedButton btnDescargar = new RoundedButton("Descargar PDF", 20, scaledIcon11);
-		btnDescargar.setSize(250, 50);
-		btnDescargar.setLocation(570, 420);
+		btnDescargar.setSize(220, 50);
+		btnDescargar.setLocation(600, 420);
 		btnDescargar.setBackground(Color.decode("#DC542B"));
 		btnDescargar.setFont(new Font("belanosima", Font.BOLD, 22));
 		btnDescargar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnDescargar.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnDescargar.setVerticalTextPosition(SwingConstants.CENTER);
+		btnDescargar.setIconTextGap(10);
+		btnDescargar.setMargin(new java.awt.Insets(0, 10, 0, 0));
 		btnDescargar.setForeground(Color.white);
 		panel.add(btnDescargar);
 
