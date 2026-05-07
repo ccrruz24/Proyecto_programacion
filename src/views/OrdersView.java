@@ -463,7 +463,7 @@ public class OrdersView {
 				setLayout(new FlowLayout(FlowLayout.CENTER, 8, 15));
 				setBackground(Color.WHITE);
 				btnVer = crearBoton("/images/detalles.png");
-				btnEdit = crearBoton("/images/editar.png");
+				btnEdit = crearBoton("/images/edit.png");
 				btnDel = crearBoton("/images/borrar.png");
 
 				// BOTÓN VER
@@ -716,6 +716,13 @@ public class OrdersView {
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
+		
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnControl);
 
@@ -737,6 +744,13 @@ public class OrdersView {
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
+		
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnPlatillos);
 
@@ -758,6 +772,13 @@ public class OrdersView {
 		btnOrdenes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
+		
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnOrdenes);
 
@@ -780,6 +801,13 @@ public class OrdersView {
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
 
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnClientes);
 
 		// Boton de clientes
@@ -800,6 +828,13 @@ public class OrdersView {
 		btnInventario.setVerticalTextPosition(SwingConstants.CENTER);
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
+		
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnInventario);
 
@@ -837,6 +872,13 @@ public class OrdersView {
 		btnCerrar.setBackground(Color.decode("#ad3813"));
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
+		
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnCerrar);
 
@@ -1204,6 +1246,13 @@ public class OrdersView {
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
+		
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnControl);
 
@@ -1225,6 +1274,13 @@ public class OrdersView {
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
+		
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnPlatillos);
 
@@ -1246,6 +1302,13 @@ public class OrdersView {
 		btnOrdenes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
+		
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnOrdenes);
 
@@ -1267,6 +1330,13 @@ public class OrdersView {
 		btnClientes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
+		
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnClientes);
 
@@ -1288,6 +1358,13 @@ public class OrdersView {
 		btnInventario.setVerticalTextPosition(SwingConstants.CENTER);
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
+		
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnInventario);
 
@@ -1326,6 +1403,13 @@ public class OrdersView {
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
 
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnCerrar);
 
 		// Boton de volver
@@ -1719,6 +1803,13 @@ public class OrdersView {
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
+		
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnControl);
 
@@ -1740,6 +1831,13 @@ public class OrdersView {
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
+		
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnPlatillos);
 
@@ -1762,6 +1860,13 @@ public class OrdersView {
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
 
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnOrdenes);
 
 		// Boton de clientes
@@ -1783,6 +1888,13 @@ public class OrdersView {
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
 
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnClientes);
 
 		// Boton de clientes
@@ -1803,6 +1915,13 @@ public class OrdersView {
 		btnInventario.setVerticalTextPosition(SwingConstants.CENTER);
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
+		
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnInventario);
 
@@ -1840,6 +1959,12 @@ public class OrdersView {
 		btnCerrar.setBackground(Color.decode("#ad3813"));
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
+		
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
 
 		opciones.add(btnCerrar);
 
@@ -2177,6 +2302,13 @@ public class OrdersView {
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
 
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnControl);
 
 		// Boton de platillos
@@ -2198,6 +2330,13 @@ public class OrdersView {
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
 
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnPlatillos);
 
 		// Boton de ordenes
@@ -2219,6 +2358,13 @@ public class OrdersView {
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
 
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnOrdenes);
 
 		// Boton de clientes
@@ -2239,6 +2385,13 @@ public class OrdersView {
 		btnClientes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
+		
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnClientes);
 
@@ -2260,6 +2413,13 @@ public class OrdersView {
 		btnInventario.setVerticalTextPosition(SwingConstants.CENTER);
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
+		
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnInventario);
 
@@ -2298,6 +2458,13 @@ public class OrdersView {
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
 
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
+
+		
 		opciones.add(btnCerrar);
 
 		// Boton de volver
@@ -2631,6 +2798,14 @@ public class OrdersView {
 		btnControl.setHorizontalTextPosition(SwingConstants.RIGHT); // texto a la derecha del icono
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
+		
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
+		
 		btnControl.setFocusPainted(false);
 
 		opciones.add(btnControl);
@@ -2654,6 +2829,12 @@ public class OrdersView {
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
 
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
+
 		opciones.add(btnPlatillos);
 
 		// Boton de ordenes
@@ -2675,6 +2856,12 @@ public class OrdersView {
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
 
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+	
 		opciones.add(btnOrdenes);
 
 		// Boton de clientes
@@ -2695,6 +2882,12 @@ public class OrdersView {
 		btnClientes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
+
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
 
 		opciones.add(btnClientes);
 
@@ -2717,6 +2910,12 @@ public class OrdersView {
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
 
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
+		
 		opciones.add(btnInventario);
 
 		// Boton de correo electronico
@@ -2753,6 +2952,12 @@ public class OrdersView {
 		btnCerrar.setBackground(Color.decode("#ad3813"));
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
+
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
 
 		opciones.add(btnCerrar);
 
@@ -3120,6 +3325,13 @@ public class OrdersView {
 		btnControl.setVerticalTextPosition(SwingConstants.CENTER); // texto centrado verticalmente
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
+		
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnControl);
 
@@ -3141,6 +3353,12 @@ public class OrdersView {
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
+		
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
 
 		opciones.add(btnPlatillos);
 
@@ -3162,6 +3380,13 @@ public class OrdersView {
 		btnOrdenes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
+		
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnOrdenes);
 
@@ -3183,6 +3408,13 @@ public class OrdersView {
 		btnClientes.setVerticalTextPosition(SwingConstants.CENTER);
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
+		
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnClientes);
 
@@ -3204,6 +3436,13 @@ public class OrdersView {
 		btnInventario.setVerticalTextPosition(SwingConstants.CENTER);
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
+		
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnInventario);
 
@@ -3241,6 +3480,12 @@ public class OrdersView {
 		btnCerrar.setBackground(Color.decode("#ad3813"));
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
+		
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
 
 		opciones.add(btnCerrar);
 
@@ -3636,7 +3881,12 @@ public class OrdersView {
 		btnControl.setIconTextGap(10);
 		btnControl.setFocusPainted(false);
 
-		
+		btnControl.addActionListener(e -> {
+			HomeViews dashboard = new HomeViews();
+			dashboard.panelControl();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnControl);
 
@@ -3658,6 +3908,12 @@ public class OrdersView {
 		btnPlatillos.setVerticalTextPosition(SwingConstants.CENTER);
 		btnPlatillos.setIconTextGap(10);
 		btnPlatillos.setFocusPainted(false);
+
+		btnPlatillos.addActionListener(e -> {
+			DishesView dish = new DishesView();
+			dish.platillos();
+			ventana.dispose();
+		});
 
 		
 		opciones.add(btnPlatillos);
@@ -3681,7 +3937,12 @@ public class OrdersView {
 		btnOrdenes.setIconTextGap(10);
 		btnOrdenes.setFocusPainted(false);
 
-		
+		btnOrdenes.addActionListener(e -> {
+			OrdersView orders = new OrdersView();
+			orders.ordenes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnOrdenes);
 
@@ -3704,7 +3965,12 @@ public class OrdersView {
 		btnClientes.setIconTextGap(10);
 		btnClientes.setFocusPainted(false);
 
-		
+		btnClientes.addActionListener(e -> {
+			ClientsViews clients = new ClientsViews();
+			clients.clientes();
+			ventana.dispose();
+		});
+
 
 		opciones.add(btnClientes);
 
@@ -3727,7 +3993,11 @@ public class OrdersView {
 		btnInventario.setIconTextGap(10);
 		btnInventario.setFocusPainted(false);
 
-		
+		btnInventario.addActionListener(e -> {
+			InventoryView inventory = new InventoryView();
+			inventory.inventario();
+			ventana.dispose();
+		});
 
 		opciones.add(btnInventario);
 
@@ -3766,7 +4036,11 @@ public class OrdersView {
 		btnCerrar.setForeground(Color.white);
 		btnCerrar.setFocusPainted(false);
 
-		
+		btnCerrar.addActionListener(e -> {
+			AuthViews close = new AuthViews();
+			close.inicioSesion();
+			ventana.dispose();
+		});
 
 		opciones.add(btnCerrar);
 
