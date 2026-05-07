@@ -34,4 +34,26 @@ public class AuthModel {
 	    }
 	    return false;
 	}
+	
+	public boolean register(String email, String password, String name) {
+	    String query = "INSERT INTO `login` (`email`, `password`, `Nombre`) VALUES (?, ?, ?)";
+	    
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        
+	        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ids-p3-tv", "root", "");
+	             PreparedStatement ps = conn.prepareStatement(query)) {
+	            
+	            ps.setString(1, email);
+	            ps.setString(2, password);
+	            ps.setString(3, name);
+	            
+	            int rows = ps.executeUpdate();
+	            return rows > 0;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 }

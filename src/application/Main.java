@@ -12,7 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		AuthController ac = new AuthController();
-		//ac.login();
+		ac.login();
 		//ac.registro();
 		
 		
@@ -47,7 +47,7 @@ public class Main {
 		//cv.editarClienteSalma();
 		
 		InventoryController iv = new InventoryController();
-		iv.inventario();
+		//iv.inventario();
 		//iv.verInventarioTortilla();
 		//iv.verInventarioLimon();
 		//iv.editarInventarioTortilla();

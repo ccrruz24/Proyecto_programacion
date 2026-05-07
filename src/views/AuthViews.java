@@ -445,14 +445,14 @@ public class AuthViews {
 		panel.add(contra);
 
 		// Cuadro de texto de nombre
-		RoundedTextField textContra = new RoundedTextField(20, 20);
-		textContra.setSize(250, 50);
-		textContra.setLocation(40, 380);
-		textContra.setBackground(Color.decode("#FFB25B"));
-		textContra.setFont(new Font("belanosima", Font.BOLD, 20));
-		textContra.setOpaque(false);
-		textContra.setBorder(null);
-		panel.add(textContra);
+		RoundedTextField textPassword = new RoundedTextField(20, 20);
+		textPassword.setSize(250, 50);
+		textPassword.setLocation(40, 380);
+		textPassword.setBackground(Color.decode("#FFB25B"));
+		textPassword.setFont(new Font("belanosima", Font.BOLD, 20));
+		textPassword.setOpaque(false);
+		textPassword.setBorder(null);
+		panel.add(textPassword);
 
 		// Etiqueta de contraseña
 		JLabel contra1 = new JLabel("Confirmar contraseña");
@@ -500,57 +500,38 @@ public class AuthViews {
 			String nom = textNombre.getText().trim();
 			String ape = textApellido.getText().trim();
 			String mail = textCorreo.getText().trim();
-			String pass = textContra.getText().trim();
+			String pass = textPassword.getText().trim();
 			String passConfirm = textContra1.getText().trim();
 
-			// Validar nombre y apellido
-			if (nom.isEmpty()) {
-				textNombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			} else {
-				textNombre.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-			}
+			// 2. Validación lógica básica
+		    boolean camposLlenos = !nom.isEmpty() && !mail.isEmpty() && !pass.isEmpty();
+		    boolean passwordCoincide = pass.equals(passConfirm) && pass.length() >= 8;
 
-			if (ape.isEmpty()) {
-				textApellido.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			} else {
-				textApellido.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-			}
-
-			// Validar correo
-			if (mail.isEmpty()) {
-				textCorreo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			} else {
-				textCorreo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-			}
-
-			// Validar primera contraseña
-			if (pass.isEmpty() || pass.length() < 8) {
-				textContra.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			} else {
-				textContra.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-			}
-
-			// Validadion de contraseña
-			if (passConfirm.isEmpty() || !passConfirm.equals(pass)) {
-				textContra1.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			} else {
-				textContra1.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-			}
-
-			// Verificación final
-			if (!nom.isEmpty() && !ape.isEmpty() && !mail.isEmpty() && pass.length() >= 8 && pass.equals(passConfirm)) {
-
-				JOptionPane.showMessageDialog(panel, "Registro exitoso", "La Casa del Maíz",
-						JOptionPane.INFORMATION_MESSAGE);
-
-				ventana.dispose();
-			} else {
-				// Alerta si las contraseñas no coinciden
-				if (!pass.equals(passConfirm) && !passConfirm.isEmpty()) {
-					JOptionPane.showMessageDialog(panel, "Las contraseñas no coinciden", "Error de Validación",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
+		    if (camposLlenos && passwordCoincide) {
+		        // 3. ENVIAR A LA BASE DE DATOS
+		        AuthModel auth = new AuthModel();
+		        
+		        if (auth.register(mail, pass, nom)) {
+		            JOptionPane.showMessageDialog(panel, "Usuario " + nom + " registrado correctamente", 
+		                    "La Casa del Maíz", JOptionPane.INFORMATION_MESSAGE);
+		            AuthViews authLogin = new AuthViews();
+		            
+		            authLogin.inicioSesion();
+		            ventana.dispose();
+		        } else {
+		            JOptionPane.showMessageDialog(panel, "Error: No se pudo registrar en la base de datos", 
+		                    "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+		        }
+		        
+		    } else {
+		        if (!passwordCoincide) {
+		            JOptionPane.showMessageDialog(panel, "Las contraseñas no coinciden o son muy cortas (min 8)", 
+		                    "Error de Validación", JOptionPane.ERROR_MESSAGE);
+		        } else {
+		            JOptionPane.showMessageDialog(panel, "Por favor rellena todos los campos", 
+		                    "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
+		        }
+		    }
 		});
 
 		panel.add(btnsiCuenta);
