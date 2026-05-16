@@ -30,6 +30,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import controllers.ClientController;
+
 public class HomeViews {
 	private Font belanosima;
 
@@ -296,9 +298,12 @@ public class HomeViews {
 		btnClientes.setFocusPainted(false);
 		
 		btnClientes.addActionListener(e -> {
-		    ClientsViews clients = new ClientsViews();
-		    clients.clientes();
-		    ventana.dispose(); 
+		    // En lugar de llamar al método vacío, iniciamos el flujo MVC
+		    ClientsViews vistaClientes = new ClientsViews();
+		    ClientController control = new ClientController(vistaClientes);
+		    
+		    control.iniciar(); // El controlador se encarga de cargar la lista y abrir la ventana
+		    ventana.dispose();
 		});
 		
 		opciones.add(btnClientes);

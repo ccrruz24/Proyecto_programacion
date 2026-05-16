@@ -37,7 +37,7 @@ public class Main {
 		//ov.editarOrdenesSalma();
 		//ov.nuevaOrden();
 		
-		ClientController cv = new ClientController();
+		ClientController cv = new ClientController(null);
 		//cv.clientes();
 		//cv.verClienteGrady();
 		//cv.verClienteMarta();
